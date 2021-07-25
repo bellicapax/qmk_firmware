@@ -3,4 +3,5 @@ make -j 1 ergodash/rev1:bellicapax:avrdude-split-left
 make -j 1 ergodash/rev1:bellicapax:avrdude-split-right
 
 
-MAKE SURE YOU'RE INSIDE THE qmk_firmware DIRECTORY!!!
+Run these in the QMK MSYS console from inside of C:\Users\erisk\qmk_firmware
+MAKE SURE YOU'RE INSIDE THE \qmk_firmware DIRECTORY!!!
