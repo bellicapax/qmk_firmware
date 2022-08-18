@@ -18,17 +18,18 @@
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT(
-                    KC_MUTE,
-      KC_ENT, QK_BOOTLOADER, KC_BSPC,
-      KC_7,   KC_8, KC_9,
-      KC_4,   KC_5, KC_6,
-      LCTL(LALT(KC_B)),   LCTL(KC_B), LCTL(LSFT(KC_B))
+                                            KC_MUTE,
+      KC_ENT,           QK_BOOTLOADER,      KC_BSPC,
+      KC_7,             KC_8,               KC_F8,
+      LSFT(KC_ESC),     LALT(LSFT(KC_P)),   LALT(KC_P),
+      LCTL(LALT(KC_B)), LCTL(KC_B),         LCTL(LSFT(KC_B))
   )
 };
 
 #ifdef ENCODER_MAP_ENABLE
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
-  [0] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
+  //[0] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },  
+  [0] = { ENCODER_CCW_CW(RGB_RMOD, RGB_MOD) },
 };
 #endif
 
@@ -108,6 +109,24 @@ static void render_qmk_logo(void) {
 bool oled_task_user(void) {
   render_qmk_logo();
   return true;
+}
+
+#endif
+
+#ifdef RGB_MATRIX_ENABLE
+
+void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+    for (uint8_t i = led_min; i <= led_max; i++) 
+    {
+        if(i % 2 == 0)
+        {
+            rgb_matrix_set_color(i, RGB_RED);
+        }
+        else
+        {
+            rgb_matrix_set_color(i, RGB_BLUE);
+        }
+    }
 }
 
 #endif
