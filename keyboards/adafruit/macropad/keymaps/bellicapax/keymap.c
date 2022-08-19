@@ -18,18 +18,18 @@
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT(
-                                            KC_MUTE,
-      KC_ENT,           QK_BOOTLOADER,      KC_BSPC,
-      KC_7,             KC_8,               KC_F8,
-      LSFT(KC_ESC),     LALT(LSFT(KC_P)),   LALT(KC_P),
-      LCTL(LALT(KC_B)), LCTL(KC_B),         LCTL(LSFT(KC_B))
+                                                KC_MUTE,
+      LCTL(LGUI(KC_LEFT)),  KC_0,               LCTL(LGUI(KC_RGHT)),
+      LSFT(LGUI(KC_LEFT)),  KC_F8,              LSFT(LGUI(KC_RGHT)),
+      LSFT(KC_ESC),         LALT(LSFT(KC_P)),   LALT(KC_P),
+      LCTL(LALT(KC_B)),     LCTL(KC_B),         LCTL(LSFT(KC_B))
   )
 };
 
 #ifdef ENCODER_MAP_ENABLE
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
   //[0] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },  
-  [0] = { ENCODER_CCW_CW(RGB_RMOD, RGB_MOD) },
+  [0] = { ENCODER_CCW_CW(RGB_VAD, RGB_VAI) },
 };
 #endif
 
@@ -115,18 +115,16 @@ bool oled_task_user(void) {
 
 #ifdef RGB_MATRIX_ENABLE
 
-void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
-    for (uint8_t i = led_min; i <= led_max; i++) 
-    {
-        if(i % 2 == 0)
-        {
-            rgb_matrix_set_color(i, RGB_RED);
-        }
-        else
-        {
-            rgb_matrix_set_color(i, RGB_BLUE);
-        }
-    }
+void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) 
+{
+    
+    rgb_matrix_set_color(0, RGB_ORANGE);   rgb_matrix_set_color(1, RGB_OFF);       rgb_matrix_set_color(2, RGB_ORANGE);
+    rgb_matrix_set_color(3, RGB_PINK);   rgb_matrix_set_color(4, RGB_WHITE);     rgb_matrix_set_color(5, RGB_PINK);
+    rgb_matrix_set_color(6, RGB_RED);   rgb_matrix_set_color(7, RGB_YELLOW);    rgb_matrix_set_color(8, RGB_GREEN);    
+    rgb_matrix_set_color(9, RGB_MAGENTA);   rgb_matrix_set_color(10, RGB_BLUE);     rgb_matrix_set_color(11, RGB_CYAN);
+    //for (uint8_t i = led_min; i <= led_max; i++) 
+    //{
+    //}
 }
 
 #endif
